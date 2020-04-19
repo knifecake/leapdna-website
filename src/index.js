@@ -5,7 +5,7 @@ const Static = require('./views/static');
 
 m.route(document.body, "/", {
   "/": Layout,
-  "/converter": {
+  "/convert": {
     view: () => m(Layout, m(Converter))
   },
   "/docs/:slug": {

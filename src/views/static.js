@@ -19,7 +19,7 @@ class Static {
   }
 
   view() {
-    return m('.container', m.trust(this.html));
+    return m('.static-page', m.trust(this.html));
   }
 }
 

@@ -13,7 +13,7 @@ class Layout {
           m("nav", {"id":"main-nav"}, 
             m("ul", [
               m("li", m(m.route.Link, { href: '/explore' }, 'Explore')),
-              m("li", m(m.route.Link, { href: '/converter' }, 'Converter')),
+              m("li", m(m.route.Link, { href: '/convert' }, 'Convert')),
               m("li", m(m.route.Link, { href: '/docs/about' }, 'About'))
             ])
           )]
