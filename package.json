@@ -1,0 +1,23 @@
+{
+  "name": "leapdna-website",
+  "version": "0.1.0",
+  "description": "An interactive tool to explore leapdna allele frequency datasets and convert between different formats.",
+  "private": true,
+  "scripts": {
+    "start": "webpack -d --watch",
+    "build": "webpack -p",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["dna", "forensics", "statistics"],
+  "author": "Elias Hernandis <eliashernandis@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "csv": "^5.3.2",
+    "marked": "^0.8.2",
+    "mithril": "^2.0.4"
+  },
+  "devDependencies": {
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  }
+}
