@@ -132,6 +132,7 @@ class ConverterControls {
     }, [
       m(FormSection, { title: 'Input' }, [
         m('.form-group-inline', [
+          m('label.sr-only[for=upload-input]', 'Input file'),
           m('input#upload-input[type=file][required]', {
             oninput: e => this.file = e.target.files[0]
           })
