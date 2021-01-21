@@ -1,0 +1,81 @@
+#explore-hero {
+    margin: 3rem auto;
+    max-width: 40rem;
+}
+
+#explore-search {
+    text-align: left;
+    margin-top: 2rem;
+    label {
+        display: block;
+    }
+
+    input#query {
+        height: 2rem;
+        width: 100%;
+        margin: 0.5rem 0;
+        font-size: 1.5rem;
+    }
+
+    input[type="submit"] {
+        border: none;
+    }
+}
+
+#explore-results {
+    margin: 0 auto;
+    max-width: 50rem;
+}
+
+.explore-result {
+    border: 1px solid var(--light-gray);
+    padding: 1em;
+    margin: 1em;
+
+    display: flex;
+    justify-content: space-between;
+
+    .left *:first-child, .right *:first-child {
+        margin-top: 0;
+    }
+
+    .left *:last-child, .right *:last-child {
+        margin-bottom: 0;
+    }
+
+    .right {
+        font-size: 0.8rem;
+    }
+}
+
+#study-detail {
+    display: flex;
+    
+    aside {
+        min-width: 30%;
+    }
+
+    #explore-download {
+        h4 { margin-top: 0 }
+        background-color: var(--lighter-gray);
+        padding: 0.5rem;
+        margin-top: 2rem;
+    }
+}
+
+#explore-populations {
+    margin-top: 5rem;
+    
+    #population-taxonomy {
+        columns: 2;
+
+        li {
+            break-inside: avoid-column;
+            page-break-inside: avoid;
+
+            a {
+                cursor: pointer;
+            }
+        }
+    }
+}

@@ -1,16 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Leapdna</title>
+    <title><%= @title ? @title + " | leapdna" : "leapdna" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+    <link rel="shortcut icon" type="image/png" href="<%= asset_path "favicon.png" %>">
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
-  </body>
+        <div id="splash">
+            <header>
+                <div class="container" id="topbar">
+                    <h1><a href="/">&#x1F469&#x200D&#x1F52C leapdna</a></h1>
+                    
+                    <nav id="main-nav">
+                        <ul>
+                            <li><%= link_to 'Explore', explore_path %></li>
+                            <li><a href="/convert/">Convert</a></li>
+                            <li><%= link_to 'About', static_page_path(slug: 'about') %></li>
+                            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfuM45STzwQJwZuSnmxp3wPVuT3tc-vC7REh768Rieufh6wEg/viewform?usp=sf_link" target="_blank">Give feedback <span role="image">🧠</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+
+            <%= content_for?(:content) ? yield(:content) : yield %>
+        </div>
+        <div class="container">
+            <footer>
+                <div>
+                    <p>
+                        Created by <a href="https://hernandis.me">Elias Hernandis</a>.
+                    </p>
+
+                    <p>
+                        Please <a href="https://docs.google.com/forms/d/e/1FAIpQLSfuM45STzwQJwZuSnmxp3wPVuT3tc-vC7REh768Rieufh6wEg/viewform?usp=sf_link" target="_blank">use this form</a>
+                        or email <a href="mailto:elias@hernandis.me">elias@hernandis.me</a> to make comments or suggestions.    
+                    </p>
+                </div>
+
+                <div>
+                    <p>
+                        leapdna is free and open source software but we are not ready to release the code yet.
+                    </p>
+
+                    <p>
+                        All data is subject to the License under which it was it was published.
+                    </p>
+                </div>
+            </footer>
+        </div>
+
+        <script async defer src="https://sa.leapdna.org/latest.js"></script>
+        <noscript><img src="https://sa.leapdna.org/noscript.gif" alt=""/></noscript>
+
+        <script async defer src="https://sa.leapdna.org/latest.js"></script>
+        <noscript><img src="https://sa.leapdna.org/noscript.gif" alt=""/></noscript>
+    </body>
 </html>

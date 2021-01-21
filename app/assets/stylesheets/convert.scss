@@ -1,0 +1,122 @@
+// #convert-app {
+// }
+
+#converter {
+    display: flex;
+    border-top: 1px solid var(--light-gray);
+    border-bottom: 1px solid var(--light-gray);
+    font-size: 14px;
+}
+
+#converter aside {
+    background-color: var(--lighter-gray);
+    border-right: 1px solid var(--light-gray);
+
+    padding: 1rem;
+
+    color: var(--dark-gray);
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#converter section {
+    overflow: scroll;
+
+    width: 80%;
+    height: 100%;
+}
+
+#converter-instructions {
+    max-width: 40rem;
+    margin: 3rem auto;
+}
+
+.form-section {
+    border-bottom: 1px solid var(--light-gray);
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.collapsible .collapsible-title {
+    cursor: pointer;
+}
+
+.collapsible .collapsible-title::before {
+    content: "▶︎ ";
+    display: inline-block;
+    font-size: .75em;
+    color: var(--gray);
+}
+
+.collapsible.open .collapsible-title::before {
+    display: inline-block;
+    transform: rotate(90deg);
+}
+
+.collapsible-title {
+    font-weight: 500;
+    margin: 0.5rem 0;
+}
+
+.form-group, .form-group-inline {
+    margin-bottom: .8rem;
+}
+
+.form-group.dropdown-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-group.checkbox-line {
+    display: flex;
+    margin: .3rem 0;
+}
+
+.form-group.checkbox-line:last-child {
+    margin-bottom: .8rem;
+}
+
+.form-group.checkbox-line input {
+    margin-right: .5rem;
+}
+
+.form-group.dropdown-group label,
+.form-group.checkbox-line label {
+    display: inline-block;
+}
+
+.form-group label {
+    display: block;
+}
+
+.form-group-inline label {
+    margin: 0 .2rem;
+}
+
+.input-group {
+    display: inline-block;
+    margin: 0 .5rem;
+}
+
+.btn-wide {
+    width: 100%;
+}
+
+table {
+    max-width: 100%;
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: .4rem;
+}
+
+th {
+    border-bottom: 2px solid var(--light-gray);
+    text-align: left; /* override browser default */
+}
+
+td {
+    border-bottom: 1px solid var(--light-gray);
+}

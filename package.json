@@ -5,7 +5,10 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.2.1",
-    "turbolinks": "^5.2.0"
+    "turbolinks": "^5.2.0",
+    "leapdna": "file:../js",
+    "marked": "^1.0.0",
+    "mithril": "^2.0.4"
   },
   "version": "0.1.0",
   "devDependencies": {

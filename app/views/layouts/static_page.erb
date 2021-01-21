@@ -1,0 +1,6 @@
+<% content_for :content do %>
+    <div class="readable-copy">
+        <%= content_for?(:news_content) ? yield(:news_content) : yield %>
+    </div>
+<% end %>
+<%= render template: "layouts/application" %>
