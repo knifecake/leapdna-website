@@ -1,2 +1,19 @@
-<h1>Explore#study</h1>
-<p>Find me in app/views/explore/study.html.erb</p>
+<div class="container" id="explore-app">
+    <div>
+        <div id="study-detail">
+            <section>
+                <h3><%= @study.population.name %> <span class="text-mono"><%= @study.id %></h3>
+                <h2>Source name</h2>
+                <p>Source authors</p>
+                <%= link_to 'DOI link', '#' %>
+                <details>
+                    <summary>Abstract</summary>
+                    <p class="readable-copy">Abstract contents</p>
+                </details>
+                <details>
+                    <summary><%= @study.locus_count || 0 %> loci included</summary>
+                </details>
+            </section>
+        </div>
+    </div>
+</div>

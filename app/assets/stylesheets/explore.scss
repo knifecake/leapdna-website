@@ -61,6 +61,18 @@
         padding: 0.5rem;
         margin-top: 2rem;
     }
+
+    details {
+        background-color: var(--lighter-gray);
+        border: 1px solid var(--light-gray);
+        padding: .5em 1em;
+
+        width: 100%;
+
+        summary {
+            cursor: pointer;
+        }
+    }
 }
 
 #explore-populations {

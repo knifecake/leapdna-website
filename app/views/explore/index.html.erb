@@ -4,7 +4,7 @@
             <h2>Explore <%= @study_count %> frequency studies across <%= @population_count%> populations</h2>
             <%= form_with url: explore_path, method: :get, id: 'explore-search' do |form| %>
                 <%= form.label :query, 'Search by title or population' %>
-                <%= form.text_field :query, placeholder: 'Try searching for "africa"', value: params[:query] %>
+                <%= form.text_field :query, placeholder: 'Try searching for "africa"', value: params[:query], required: true %>
                 <%= form.submit 'Search', class: 'btn', style: 'display: inline-block; margin-top: 0.3rem;' %>
             <% end %>
         </div>
@@ -21,7 +21,7 @@
                             </p>
                         </div>
                         <div class="right text-right">
-                            <p><%= link_to 'More formats & details <span role="image">🔎</span>'.html_safe, '#' %></p>
+                            <p><%= link_to 'More formats & details <span role="image">🔎</span>'.html_safe, study_detail_path(study) %></p>
                             <p><%= link_to 'Download in leapdna format <span role="image">📘</span>'.html_safe, '#' %></p>
                         </div>
                     </article>
