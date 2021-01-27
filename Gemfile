@@ -5,8 +5,8 @@ ruby '2.7.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.1'
-# Use postgresql as the database for Active Record
-gem 'pg', '~> 1.1'
+# Use sqlite3 as the database for Active Record
+gem 'sqlite3', '~> 1.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -29,6 +29,8 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'front_matter_parser', '~> 0.2.1'
 gem 'kramdown', '~> 2.3.0'
 
+gem 'bibtex-ruby', '~> 4.0', '>= 4.0.8'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -43,6 +45,7 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'stackprof'
 end
 
 group :test do

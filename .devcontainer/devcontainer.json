@@ -8,30 +8,16 @@
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": { 
-		"terminal.integrated.shell.linux": "/bin/bash",
-		"sqltools.connections": [
-			{
-				"name": "Container database",
-				"driver": "PostgreSQL",
-				"previewLimit": 50,
-				"server": "localhost",
-				"port": 5432,
-				"database": "leapdna",
-				"username": "leapdna",
-				"password": "leapdna"
-			}
-		],
+		"terminal.integrated.shell.linux": "/bin/bash"
 	},
 
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
-		"rebornix.Ruby",
-		"mtxr.sqltools",
-		"mtxr.sqltools-driver-pg",
+		"rebornix.Ruby"
 	],
 	
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [3000, 5432],
+	"forwardPorts": [3000],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "ruby --version",

@@ -1,9 +1,9 @@
 <div class="container" id="explore-app">
     <div>
         <div id="explore-hero">
-            <h2>Explore <%= @study_count %> frequency studies across <%= @population_count%> populations</h2>
+            <h2>Explore <%= @study_count %> frequency studies across <%= @geographic_region_count %> geographic regions</h2>
             <%= form_with url: explore_path, method: :get, id: 'explore-search' do |form| %>
-                <%= form.label :query, 'Search by title or population' %>
+                <%= form.label :query, 'Search by title, population, geographic region and more...' %>
                 <%= form.text_field :query, placeholder: 'Try searching for "africa"', value: params[:query], required: true %>
                 <%= form.submit 'Search', class: 'btn', style: 'display: inline-block; margin-top: 0.3rem;' %>
             <% end %>
@@ -13,11 +13,21 @@
                 <% @studies.each do |study| %>
                     <article class="explore-result">
                         <div class="left">
-                            <h4><%= study.population.name %></h4>
-                            <p><%= study.name %></p>
+                            <h4><%= link_to study.name, study_detail_path(study) %></h4>
+                            <p>
+                                <span role="image">🌍</span><%= study.geographic_region.name %> |
+                                <span role="image">👣</span><%= study.population.name %>
+                            </p>
                             <p>
                                 <span class="label"><%= study.locus_count || 0 %> loci</span>
-                                <span class="label"><%= study.study_type == 'str_sequence' ? 'sequence-based alleles' : 'length-based alleles' %></span>
+                                <span class="label"><%= study.allele_types == 'str_sequence' ? 'sequence-based alleles' : 'length-based alleles' %></span>
+                                <% if not study.sample_size_range.size.nil? and study.sample_size_range.size.finite? %>
+                                    <% if study.sample_size_range.size > 1 %>
+                                        <span class="label"><%= study.sample_size_range.min %> - <%= study.sample_size_range.max %> samples</span>
+                                    <% else %>
+                                        <span class="label"><%= study.sample_size %> samples</span>
+                                    <% end %>
+                                <% end %>
                             </p>
                         </div>
                         <div class="right text-right">
@@ -34,9 +44,9 @@
             <% end %>
         </div>
         <section id="explore-populations">
-            <h3>Populations</h3>
+            <h3>Geographic regions</h3>
             <ul id="population-taxonomy">
-                <%= render partial: 'population', collection: @populations %>
+                <%= render partial: 'geographic_region', collection: @geographic_regions %>
             </ul>
         </section>
     </div>

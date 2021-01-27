@@ -1,6 +1,6 @@
 require "test_helper"
 
-class PopulationTest < ActiveSupport::TestCase
+class LocusTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

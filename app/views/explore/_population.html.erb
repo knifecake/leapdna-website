@@ -1,8 +1,0 @@
-<li>
-    <%= link_to population.name, explore_path(query: population.id) %>
-    <% if population.children %>
-        <ul>
-            <%= render partial: 'population', collection: population.children %>
-        </ul>
-    <% end %>
-</li>

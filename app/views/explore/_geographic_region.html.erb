@@ -1,0 +1,8 @@
+<li>
+    <%= link_to geographic_region.name, explore_path(query: geographic_region.id) %>
+    <% if geographic_region.children %>
+        <ul>
+            <%= render partial: 'geographic_region', collection: geographic_region.children %>
+        </ul>
+    <% end %>
+</li>

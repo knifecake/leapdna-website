@@ -5,6 +5,6 @@ class Population < ApplicationRecord
     scope :roots, -> { where(parent_id: nil) }
 
     def self.tree_data
-        roots.includes(children: {children: {children: :children}})
+        roots.order(:name).includes(children: {children: {children: :children}})
     end
 end

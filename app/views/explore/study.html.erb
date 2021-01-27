@@ -1,19 +1,69 @@
 <div class="container" id="explore-app">
-    <div>
-        <div id="study-detail">
-            <section>
-                <h3><%= @study.population.name %> <span class="text-mono"><%= @study.id %></h3>
-                <h2>Source name</h2>
-                <p>Source authors</p>
-                <%= link_to 'DOI link', '#' %>
-                <details>
-                    <summary>Abstract</summary>
-                    <p class="readable-copy">Abstract contents</p>
-                </details>
-                <details>
-                    <summary><%= @study.locus_count || 0 %> loci included</summary>
-                </details>
-            </section>
+  <div>
+    <div id="study-detail">
+      <section>
+        <h3><%= @study.name %> <small class="text-mono text-muted">(<%= @study.id %>)</small></h3>
+        <p>
+          <span role="image">🌍</span> Geographic region: <%= link_to @study.geographic_region.name, explore_path(query: @study.geographic_region.id) %> |
+          <span role="image">👣</span> Population: <%= link_to @study.population.name, explore_path(query: @study.population.id) %>
+        </p>
+        <h2><%= @study.source.title.tr('{}', '') %></h2>
+        <p><%= @study.source.authors %></p>
+        <p>
+          <strong>DOI:</strong> <%= link_to @study.source.doi, @study.source.doi_url, target: '_blank' %>
+          <% if @study.source.journal %>
+            | <strong>Journal:</strong> <%= @study.source.journal %>
+          <% end %>
+        </p>
+        <details>
+          <summary>Abstract</summary>
+          <p class="readable-copy"><%= @study.source.abstract %></p>
+        </details>
+        <details>
+          <summary><%= @study.locus_count || 0 %> loci included</summary>
+          <table>
+            <thead>
+              <tr>
+                <td>Locus</td>
+                <td>Chromosome</td>
+                <td>Sample size</td>
+                <td># Alleles</td>
+                <td>H_obs</td>
+                <td>H_exp</td>
+              </tr>
+            </thead>
+            <tbody>
+              <% @study.locus_annotations.each do |la| %>
+                <tr>
+                  <td><%= la.locus_id %></td>
+                  <td class="text-center"><%= la.locus.chromosome %></td>
+                  <td class="text-center"><%= la.sample_size %></td>
+                  <td class="text-center"><%= la.allele_count %></td>
+                  <td class="text-center"><%= la.h_obs || '-' %></td>
+                  <td class="text-center"><%= la.h_exp || '-' %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </details>
+      </section>
+      <aside>
+        <p><%= link_to 'Download in leapdna format <span role="image">📘</span>'.html_safe, study_download_path(@study.id, export_format: 'leapdna') %></p>
+        <div id="explore-download">
+          <h4>Other download options</h4>
+          <%= form_with url: study_download_path(@study.id), method: :get   do |form| %>
+            <div class="form-section">
+              <div class="form-group dropdown-group">
+                <%= form.label :export_format, 'Export format' %>
+                <%= form.select :export_format, [["leapdna", "leapdna"], ["Familias", "familias"], ["relMix", "relmix"], ["LRMixStudio", "lrmixstudio"], ["EuroForMix", "euroformix"], ["CSV", "csv"]] %>
+              </div>
+              <div class="form-group">
+                <%= form.submit 'Save', class: 'btn-wide' %>
+              </div>
+            </div>
+          <% end %>
         </div>
+      </aside>
     </div>
+  </div>
 </div>
