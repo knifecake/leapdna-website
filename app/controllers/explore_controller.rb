@@ -15,18 +15,10 @@ class ExploreController < ApplicationController
 
   def study
     @study = Study.includes(locus_annotations: [:locus]).find(params[:id])
-  end
 
-  def download
-    @study = Study.includes(locus_annotations: [:locus]).find(params[:id])
-
-    format = params[:export_format]
-    if format == 'leapdna'
-      send_data @study.to_leapdna, filename: @study.id + '.leapdna.json'
-    elsif format == 'familias'
-      send_data @study.to_familias, filename: @study.id + '.txt'
-    else
-      redirect_to study_detail_url(@study.id)
+    respond_to do |format|
+      format.html # study.html.erb
+      format.json { render json: @study.to_leapdna }
     end
   end
 end

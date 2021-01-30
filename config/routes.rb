@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   get 'explore', to: 'explore#index'
   get 'explore/study/:id', to: 'explore#study', as: 'study_detail'
-  get 'explore/download/:id', to: 'explore#download', as: 'study_download'
 
   get 'convert', to: 'convert#index'
 

@@ -31,8 +31,8 @@
                             </p>
                         </div>
                         <div class="right text-right">
-                            <p><%= link_to 'More formats & details <span role="image">🔎</span>'.html_safe, study_detail_path(study) %></p>
-                            <p><%= link_to 'Download in leapdna format <span role="image">📘</span>'.html_safe, '#' %></p>
+                            <p><%= link_to 'More formats & details <span role="image">🔎</span>'.html_safe, study_detail_url(study) %></p>
+                            <p><%= link_to 'Download in leapdna format <span role="image">📘</span>'.html_safe, study_detail_path(study, format: :json) %></p>
                         </div>
                     </article>
                 <% end %>
