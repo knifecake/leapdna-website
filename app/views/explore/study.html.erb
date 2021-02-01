@@ -4,8 +4,8 @@
       <section>
         <h3><%= @study.name %> <small class="text-mono text-muted">(<%= @study.id %>)</small></h3>
         <p>
-          <span role="image">🌍</span> Geographic region: <%= link_to @study.geographic_region.name, explore_path(query: @study.geographic_region.id) %> |
-          <span role="image">👣</span> Population: <%= link_to @study.population.name, explore_path(query: @study.population.id) %>
+          <span role="img">🌍</span> Geographic region: <%= link_to @study.geographic_region.name, explore_path(query: @study.geographic_region.id) %> |
+          <span role="img">👣</span> Population: <%= link_to @study.population.name, explore_path(query: @study.population.id) %>
         </p>
         <h2><%= @study.source.title.tr('{}', '') %></h2>
         <p><%= @study.source.authors %></p>
@@ -17,7 +17,7 @@
         </p>
         <details>
           <summary>Abstract</summary>
-          <p class="readable-copy"><%= @study.source.abstract %></p>
+          <p class="readable-copy"><%= auto_link(@study.source.abstract.html_safe) %></p>
         </details>
         <details>
           <summary><%= @study.locus_count || 0 %> loci included</summary>
@@ -36,7 +36,7 @@
             <tbody>
               <% @study.locus_annotations.each do |la| %>
                 <tr>
-                  <td><%= la.locus_id %></td>
+                  <td><%= link_to la.locus_id, locus_detail_path(la.locus_id) %></td>
                   <td class="text-center"><%= la.locus.chromosome %></td>
                   <td class="text-center"><%= la.sample_size %></td>
                   <td class="text-center"><%= la.allele_count %></td>
@@ -49,7 +49,7 @@
         </details>
       </section>
       <aside>
-        <p><%= link_to 'Download in leapdna format <span role="image">📘</span>'.html_safe, study_detail_url(@study.id, format: :json) %></p>
+        <p><%= link_to 'Download in leapdna format <span role="img">📘</span>'.html_safe, study_detail_url(@study.id, format: :json) %></p>
         <div id="explore-download">
         </div>
       </aside>

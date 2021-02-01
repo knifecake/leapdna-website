@@ -36,22 +36,28 @@ class Study < ApplicationRecord
           'source_id': source.id
         },
       },
-      'loci': loci.map { |locus| locus_to_leapdna(locus) }
+      'loci': locus_annotations.map { |annotation| locus_to_leapdna(annotation) }
     }.to_json
   end
 
-  def locus_to_leapdna(locus)
+  def locus_to_leapdna(annotation)
+    locus = annotation.locus
     freqs = freqs_for_locus(locus)
     
     {
       'type': 'locus',
       'name': locus.id,
+      'chromosome': locus.chromosome,
+      'GRCh38_start': locus.grch38_start,
+      'GRCh38_end': locus.grch38_end,
       'sample_size': freqs.reduce(0) { |t, freq| t + (freq.count || 0) },
+      'h_obs': annotation.h_obs,
+      'h_exp': annotation.h_exp,
       'alleles': freqs.map { |freq|
         {
           'type': 'allele',
           'frequency': freq.frequency,
-          'count': freq.count,
+          'count': freq.count || 0,
           'name': freq.allele.name
         }
       }

@@ -1,0 +1,26 @@
+<div class="container" id="explore-app">
+  <h2><%= @locus.id %></h2>
+  <dl>
+    <dt>Chromosome</dt>
+    <dd><%= @locus.chromosome %></dd>
+
+    <dt>GRCh38 coordinates</dt>
+    <dd><%= @locus.grch38_start %> - <%= @locus.grch38_end %> <%= link_to 'View in NCBI Genome Browser', genome_browser_url(@locus), target: '_blank' %></dd>
+
+    <dt>Known length-based alleles</dt>
+    <dd>
+        <p><%= @locus.alleles.sort_by { |allele| allele.name.to_f }.map(&:name).join(', ') %> (<%= @locus.alleles_count %> total)</p>
+        <p class="help-text">Alleles 1 and 99 may indicate shorter or longer alleles with frequencies below the MAF.</p>
+    </dd>
+  </dl>
+
+    <figure>
+        <div id="freqchart"></div>
+        <figcaption>Average allele frequencies accross all populations and all geographic regions.</figcaption>
+    </figure>
+  
+  <p><strong>Source:</strong> <%= render_reference(@locus.source) %></p>
+</div>
+
+
+<%= javascript_pack_tag 'locus' %>

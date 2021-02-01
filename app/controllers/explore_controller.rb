@@ -4,6 +4,7 @@ class ExploreController < ApplicationController
     @study_count = Study.count
     @geographic_region_count = Study.group(:geographic_region).count.count
     @geographic_regions = GeographicRegion.tree_data
+    @chromosomes = Locus.all.group_by &:chromosome
     query = params[:query].blank? ? false : params[:query].strip
     if query
       partial_query = '%' + query + '%'
@@ -19,6 +20,15 @@ class ExploreController < ApplicationController
     respond_to do |format|
       format.html # study.html.erb
       format.json { render json: @study.to_leapdna }
+    end
+  end
+
+  def locus
+    @locus = Locus.find(params[:id])
+
+    respond_to do |format|
+      format.html # locus.html.erb
+      format.json { render json: @locus.as_json }
     end
   end
 end

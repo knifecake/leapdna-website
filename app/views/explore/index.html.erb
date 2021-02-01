@@ -15,8 +15,8 @@
                         <div class="left">
                             <h4><%= link_to study.name, study_detail_path(study) %></h4>
                             <p>
-                                <span role="image">🌍</span><%= study.geographic_region.name %> |
-                                <span role="image">👣</span><%= study.population.name %>
+                                <span role="img">🌍</span> <%= study.geographic_region.name %> |
+                                <span role="img">👣</span> <%= study.population.name %>
                             </p>
                             <p>
                                 <span class="label"><%= study.locus_count || 0 %> loci</span>
@@ -31,8 +31,8 @@
                             </p>
                         </div>
                         <div class="right text-right">
-                            <p><%= link_to 'More formats & details <span role="image">🔎</span>'.html_safe, study_detail_url(study) %></p>
-                            <p><%= link_to 'Download in leapdna format <span role="image">📘</span>'.html_safe, study_detail_path(study, format: :json) %></p>
+                            <p><%= link_to 'More formats & details <span role="img">🔎</span>'.html_safe, study_detail_url(study) %></p>
+                            <p><%= link_to 'Download in leapdna format <span role="img">📘</span>'.html_safe, study_detail_path(study, format: :json) %></p>
                         </div>
                     </article>
                 <% end %>
@@ -49,5 +49,27 @@
                 <%= render partial: 'geographic_region', collection: @geographic_regions %>
             </ul>
         </section>
+        <section id="explore-loci">
+            <h3>Loci</h3>
+            <div id="ideogram-container"></div>
+
+            <table>
+                <thead>
+                    <th class="text-center">Chromosome</th>
+                    <th>Loci</th>
+                </thead>
+
+                <tbody>
+                    <% @chromosomes.each do |chromosome, loci| %>
+                        <tr>
+                            <td class="text-center"><%= chromosome %></td>
+                            <td><%= loci.map { |locus| link_to locus.id, locus_detail_path(locus) }.join(', ').html_safe %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </section>
+
+        <%= javascript_pack_tag 'chromosomes' %>
     </div>
 </div>

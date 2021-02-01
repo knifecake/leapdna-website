@@ -29,7 +29,11 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'front_matter_parser', '~> 0.2.1'
 gem 'kramdown', '~> 2.3.0'
 
+gem 'latex-decode', '~> 0.3.2'
 gem 'bibtex-ruby', '~> 4.0', '>= 4.0.8'
+gem 'citeproc-ruby', '~> 1.1', '>= 1.1.13'
+gem 'csl-styles', '~> 1.0', '>= 1.0.1.10'
+gem 'rinku', '~> 2.0', '>= 2.0.6'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

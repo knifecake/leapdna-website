@@ -22,6 +22,7 @@ class Initial < ActiveRecord::Migration[6.1]
       t.string :journal
       t.integer :year
       t.string :doi
+      t.text :bibtex
 
       t.index :doi, unique: true
     end
@@ -42,7 +43,9 @@ class Initial < ActiveRecord::Migration[6.1]
       t.integer :grch38_start
       t.integer :grch38_end
       t.string :chromosome
+      t.string :fasta
       t.integer :alleles_count, default: 0
+      t.belongs_to :source, type: :string, null: false, foreign_key: true
     end
 
     create_table :alleles do |t|
@@ -61,7 +64,7 @@ class Initial < ActiveRecord::Migration[6.1]
     
 
     create_table :frequencies do |t|
-      t.belongs_to :allele, type: :string, null: false, foreign_key: true
+      t.belongs_to :allele, null: false, foreign_key: true
       t.belongs_to :study, type: :string, null: false, foreign_key: true
       t.float :frequency
       t.integer :count

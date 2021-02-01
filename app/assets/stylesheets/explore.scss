@@ -99,3 +99,32 @@
 thead {
     font-weight: bold;
 }
+
+.sequence {
+    font-family: monospace;
+    font-weight: bold;
+    word-break: break-all;
+}
+
+.help-text {
+    font-size: 0.9em;
+    color: var(--dark-gray);
+}
+
+.base-A { color: green; }
+.base-C { color: blue; }
+.base-T { color: #b80000; }
+.base-G { color: black; }
+
+dd {
+    margin: 1em 0 1em 3em;
+}
+
+dt {
+    font-weight: bold;
+}
+
+#ideogram-container {
+    padding: 1rem;
+    overflow: hidden;
+}

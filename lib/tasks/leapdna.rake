@@ -115,7 +115,7 @@ namespace :leapdna do
       end
 
       ActiveRecord::Base.transaction do
-        sources = BibTeX.open(path)
+        sources = BibTeX.open(path).convert(:latex)
         sources.each do |source|
           Source.create!(
             id: source.key,
@@ -124,7 +124,8 @@ namespace :leapdna do
             authors: source.authors,
             journal: source.journal,
             year: source.year,
-            doi: source.doi
+            doi: source.doi,
+            bibtex: source.to_s
           )
         end
         puts "Loaded #{Source.count} sources"
@@ -146,7 +147,9 @@ namespace :leapdna do
           id: locus['id'],
           grch38_start: locus['GRCh38_start'],
           grch38_end: locus['GRCh38_end'],
-          chromosome: locus['chr']
+          chromosome: locus['chr'],
+          fasta: locus['fasta'],
+          source_id: locus['source_id']
         )
       end
 

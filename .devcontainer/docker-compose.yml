@@ -8,7 +8,6 @@ services:
 
     volumes:
       - ..:/leapdna:cached
-      - ../../js:/js
       - ../../data:/leapdna_data
 
     # Overrides default command so things don't shut down after the process ends.

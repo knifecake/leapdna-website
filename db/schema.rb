@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2021_01_22_142336) do
   end
 
   create_table "frequencies", force: :cascade do |t|
-    t.string "allele_id", null: false
+    t.integer "allele_id", null: false
     t.string "study_id", null: false
     t.float "frequency"
     t.integer "count"
@@ -46,7 +46,10 @@ ActiveRecord::Schema.define(version: 2021_01_22_142336) do
     t.integer "grch38_start"
     t.integer "grch38_end"
     t.string "chromosome"
+    t.string "fasta"
     t.integer "alleles_count", default: 0
+    t.string "source_id", null: false
+    t.index ["source_id"], name: "index_loci_on_source_id"
   end
 
   create_table "populations", id: { type: :string, limit: 64 }, force: :cascade do |t|
@@ -62,6 +65,7 @@ ActiveRecord::Schema.define(version: 2021_01_22_142336) do
     t.string "journal"
     t.integer "year"
     t.string "doi"
+    t.text "bibtex"
     t.index ["doi"], name: "index_sources_on_doi", unique: true
   end
 
@@ -94,6 +98,7 @@ ActiveRecord::Schema.define(version: 2021_01_22_142336) do
   add_foreign_key "frequencies", "alleles"
   add_foreign_key "frequencies", "studies"
   add_foreign_key "geographic_regions", "geographic_regions", column: "parent_id"
+  add_foreign_key "loci", "sources"
   add_foreign_key "populations", "populations", column: "parent_id"
   add_foreign_key "studies", "geographic_regions"
   add_foreign_key "studies", "populations"
