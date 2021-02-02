@@ -38,6 +38,11 @@ header {
         align-items: center;
     }
 
+    @media screen and (max-width: $phone-breakpoint) {
+        h1 { display: inline-block; }
+        text-align: left;
+    }
+
     text-align: center;
 }
 
@@ -72,6 +77,39 @@ nav ul li a:hover {
     background-color: var(--light-gray);
 }
 
+.collapser {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    background-color: transparent;
+    border: none;
+    padding: .3em .75em;
+
+    font-size: 2em;
+    line-height: 0;
+    cursor: pointer;
+}
+
+.collapse-on-phone {
+    @media screen and (max-width: $phone-breakpoint) {
+        display: none;
+    }
+}
+
+.phone-only {
+    display: none;
+    @media screen and (max-width: $phone-breakpoint) {
+        display:initial;
+    }
+}
+
+figure {
+    @media screen and (max-width: $phone-breakpoint) {
+        margin: 1rem;
+    }
+}
+
 footer {
     border-top: 1px solid var(--light-gray);
     padding: 1rem;
@@ -79,8 +117,10 @@ footer {
     color: var(--dark-gray);
     font-size: 0.8rem;
 
-    display: flex;
-
+    @media screen and (min-width: $phone-breakpoint) {
+        display: flex;
+    }
+    
     div {
         margin: 1rem;
     }

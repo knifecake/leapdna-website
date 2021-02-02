@@ -26,6 +26,9 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+gem 'ancestry', '~> 3.2', '>= 3.2.1'
+gem 'activerecord-import', '~> 1.0', '>= 1.0.7'
+
 gem 'front_matter_parser', '~> 0.2.1'
 gem 'kramdown', '~> 2.3.0'
 

@@ -3,8 +3,8 @@ class ExploreController < ApplicationController
     @title = 'Explore'
     @study_count = Study.count
     @geographic_region_count = Study.group(:geographic_region).count.count
-    @geographic_regions = GeographicRegion.tree_data
-    @chromosomes = Locus.all.group_by &:chromosome
+    @geographic_regions = GeographicRegion.where('study_count > 0')
+    @chromosomes = Locus.where('alleles_count > 0').group_by &:chromosome
     query = params[:query].blank? ? false : params[:query].strip
     if query
       partial_query = '%' + query + '%'

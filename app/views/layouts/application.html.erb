@@ -17,9 +17,9 @@
         <div id="splash">
             <header>
                 <div class="container" id="topbar">
+                    <button class="collapser phone-only" data-target="main-nav">☰<span class="sr-only">menu</span></button>
                     <h1><a href="/">&#x1F469&#x200D&#x1F52C leapdna</a></h1>
-                    
-                    <nav id="main-nav">
+                    <nav id="main-nav" class="collapse-on-phone">
                         <ul>
                             <li><%= link_to 'Explore', explore_path %></li>
                             <li><a href="/convert/">Convert</a></li>
@@ -31,6 +31,8 @@
                             </li>
                         </ul>
                     </nav>
+
+                    
                 </div>
             </header>
 

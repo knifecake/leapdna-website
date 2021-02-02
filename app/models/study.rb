@@ -1,8 +1,8 @@
 require 'json'
 
 class Study < ApplicationRecord
-  belongs_to :geographic_region
-  belongs_to :population
+  belongs_to :geographic_region, counter_cache: :study_count
+  belongs_to :population, counter_cache: :study_count
   belongs_to :source
   has_many :frequencies
   has_many :alleles, through: :frequencies
@@ -74,5 +74,10 @@ class Study < ApplicationRecord
 
   def freqs_for_locus(locus)
     Frequency.includes(:allele).where(allele: locus.alleles, study: self)
+  end
+
+  def increment_related_counters
+    geographic_region.study_count += 1
+    population.study_count += 1
   end
 end

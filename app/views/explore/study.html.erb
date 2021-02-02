@@ -34,7 +34,7 @@
               </tr>
             </thead>
             <tbody>
-              <% @study.locus_annotations.each do |la| %>
+              <% @study.locus_annotations.order_by_chromosome.each do |la| %>
                 <tr>
                   <td><%= link_to la.locus_id, locus_detail_path(la.locus_id) %></td>
                   <td class="text-center"><%= la.locus.chromosome %></td>

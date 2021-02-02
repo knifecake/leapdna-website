@@ -5,7 +5,13 @@
     <dd><%= @locus.chromosome %></dd>
 
     <dt>GRCh38 coordinates</dt>
-    <dd><%= @locus.grch38_start %> - <%= @locus.grch38_end %> <%= link_to 'View in NCBI Genome Browser', genome_browser_url(@locus), target: '_blank' %></dd>
+    <dd>
+      <% if @locus.grch38_start and @locus.grch38_end %>
+        <%= @locus.grch38_start %> - <%= @locus.grch38_end %> <%= link_to 'View in NCBI Genome Browser', genome_browser_url(@locus), target: '_blank' %>
+      <% else %>
+        <p><em>Coordinates unavailable. You can help by <a href="mailto:elias@hernandis.me">reporting them</a>.</em></p>
+      <% end %>
+    </dd>
 
     <dt>Known length-based alleles</dt>
     <dd>
@@ -19,7 +25,14 @@
         <figcaption>Average allele frequencies accross all populations and all geographic regions.</figcaption>
     </figure>
   
-  <p><strong>Source:</strong> <%= render_reference(@locus.source) %></p>
+  <p><strong>Source for locus metadata:</strong>
+    <% if @locus.source %>
+      <%= render_reference(@locus.source) %>
+    <% else %>
+      <em>Source unavailable. You can help by <a href="mailto:elias@hernandis.me">reporting one</a>.</em>
+    <% end %>
+  </p>
+
 </div>
 
 

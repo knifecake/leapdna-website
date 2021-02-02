@@ -1,20 +1,6 @@
 require 'json'
 require 'bibtex'
 
-def load_region(region, parent=nil)
-  new_region = GeographicRegion.create!(
-    id: region['id'],
-    name: region['name'],
-    lat: region['lat'],
-    lng: region['lng'],
-    parent: parent
-  )
-
-  if region.include? 'children' then
-    region['children'].map { |child| load_region(child, new_region) }
-  end
-end
-
 def load_population(population, parent=nil)
   new_population = Population.create!(id: population['id'], name: population['name'], parent: parent)
   if population.include? 'children' then
@@ -78,8 +64,15 @@ namespace :leapdna do
 
     begin
       ActiveRecord::Base.transaction do
-        regions = JSON.load(File.read(path))
-        regions.each { |region| load_region(region) }
+        tier3 = JSON.load(File.read(path))
+        tier1 = tier3.map { |region| [region['region'], region['region']] }.uniq
+        tier2 = tier3.map { |region| [region['subregion'], region['subregion'], region['region']] }.uniq
+        GeographicRegion.import [:id, :name], tier1
+        GeographicRegion.import [:id, :name, :ancestry], tier2, validate: false
+        GeographicRegion.import [:id, :cca3, :name, :lat, :lng, :ancestry],
+          tier3.map { |region| [region['cca2'], region['cca3'], region['name'], region['lat'], region['lng'], region['region'] + '/' + region['subregion']] },
+          validate: false
+
         puts "Loaded #{GeographicRegion.count} geographic regions"
       end
     rescue Errno::ENOENT
@@ -119,12 +112,12 @@ namespace :leapdna do
         sources.each do |source|
           Source.create!(
             id: source.key,
-            abstract: source.abstract,
+            abstract: source.fields.fetch(:abstract, nil),
             title: source.title,
             authors: source.authors,
             journal: source.journal,
             year: source.year,
-            doi: source.doi,
+            doi: source.fields.fetch(:doi, nil),
             bibtex: source.to_s
           )
         end
@@ -143,7 +136,7 @@ namespace :leapdna do
     begin
       loci = JSON.load(File.read(path))
       loci.each do |locus|
-        Locus.create!(
+        l = Locus.create!(
           id: locus['id'],
           grch38_start: locus['GRCh38_start'],
           grch38_end: locus['GRCh38_end'],

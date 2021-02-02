@@ -5,14 +5,19 @@ class Initial < ActiveRecord::Migration[6.1]
       t.string :name
       t.float :lat
       t.float :lng
-      t.belongs_to :parent, type: :string, foreign_key: { to_table: :geographic_regions }
+      t.string :ancestry
+      t.integer :study_count, default: 0, null: false
+      t.string :cca3
     end
+    add_index :geographic_regions, :ancestry
 
     create_table :populations, id: false do |t|
       t.primary_key :id, :string, limit: 64
       t.string :name
-      t.belongs_to :parent, type: :string, foreign_key: { to_table: :populations }
+      t.string :ancestry
+      t.integer :study_count, default: 0, null: false
     end
+    add_index :populations, :ancestry
 
     create_table :sources, id: false do |t|
       t.primary_key :id, :string, limit: 64
@@ -23,9 +28,9 @@ class Initial < ActiveRecord::Migration[6.1]
       t.integer :year
       t.string :doi
       t.text :bibtex
-
-      t.index :doi, unique: true
     end
+
+    add_index :sources, :doi, unique: true
 
     create_table :studies, id: false do |t|
       t.primary_key :id, :string, limit: 64
@@ -45,7 +50,7 @@ class Initial < ActiveRecord::Migration[6.1]
       t.string :chromosome
       t.string :fasta
       t.integer :alleles_count, default: 0
-      t.belongs_to :source, type: :string, null: false, foreign_key: true
+      t.references :source, type: :string, null: true, foreign_key: false
     end
 
     create_table :alleles do |t|

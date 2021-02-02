@@ -38,8 +38,10 @@ ActiveRecord::Schema.define(version: 2021_01_22_142336) do
     t.string "name"
     t.float "lat"
     t.float "lng"
-    t.string "parent_id"
-    t.index ["parent_id"], name: "index_geographic_regions_on_parent_id"
+    t.string "ancestry"
+    t.integer "study_count", default: 0, null: false
+    t.string "cca3"
+    t.index ["ancestry"], name: "index_geographic_regions_on_ancestry"
   end
 
   create_table "loci", id: { type: :string, limit: 64 }, force: :cascade do |t|
@@ -48,14 +50,15 @@ ActiveRecord::Schema.define(version: 2021_01_22_142336) do
     t.string "chromosome"
     t.string "fasta"
     t.integer "alleles_count", default: 0
-    t.string "source_id", null: false
+    t.string "source_id"
     t.index ["source_id"], name: "index_loci_on_source_id"
   end
 
   create_table "populations", id: { type: :string, limit: 64 }, force: :cascade do |t|
     t.string "name"
-    t.string "parent_id"
-    t.index ["parent_id"], name: "index_populations_on_parent_id"
+    t.string "ancestry"
+    t.integer "study_count", default: 0, null: false
+    t.index ["ancestry"], name: "index_populations_on_ancestry"
   end
 
   create_table "sources", id: { type: :string, limit: 64 }, force: :cascade do |t|
@@ -97,9 +100,6 @@ ActiveRecord::Schema.define(version: 2021_01_22_142336) do
   add_foreign_key "alleles", "loci"
   add_foreign_key "frequencies", "alleles"
   add_foreign_key "frequencies", "studies"
-  add_foreign_key "geographic_regions", "geographic_regions", column: "parent_id"
-  add_foreign_key "loci", "sources"
-  add_foreign_key "populations", "populations", column: "parent_id"
   add_foreign_key "studies", "geographic_regions"
   add_foreign_key "studies", "populations"
   add_foreign_key "studies", "sources"

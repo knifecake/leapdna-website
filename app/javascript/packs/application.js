@@ -10,3 +10,16 @@ import * as ActiveStorage from "@rails/activestorage"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+document.addEventListener('turbolinks:load', _ => {
+    document.querySelectorAll('.collapser').forEach(collapser => {
+        collapser.addEventListener('click', _ => {
+            const target = document.getElementById(collapser.dataset.target);
+            if (window.getComputedStyle(target).display !== 'none') {
+                target.style.display = 'none'
+            } else {
+                target.style.display = 'block'
+            }
+        });
+    });
+})

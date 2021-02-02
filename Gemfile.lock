@@ -47,6 +47,8 @@ GEM
     activerecord (6.1.1)
       activemodel (= 6.1.1)
       activesupport (= 6.1.1)
+    activerecord-import (1.0.7)
+      activerecord (>= 3.2)
     activestorage (6.1.1)
       actionpack (= 6.1.1)
       activejob (= 6.1.1)
@@ -62,6 +64,8 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    ancestry (3.2.1)
+      activerecord (>= 4.2.0)
     bibtex-ruby (4.4.7)
       latex-decode (~> 0.0)
     bindex (0.8.1)
@@ -223,6 +227,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-import (~> 1.0, >= 1.0.7)
+  ancestry (~> 3.2, >= 3.2.1)
   bibtex-ruby (~> 4.0, >= 4.0.8)
   bootsnap (>= 1.4.4)
   byebug

@@ -1,7 +1,7 @@
 class Locus < ApplicationRecord
     has_many :alleles
     has_many :frequencies, through: :alleles
-    belongs_to :source
+    belongs_to :source, optional: true
 
     def frequency_histogram
         frequencies.group('alleles.name')
