@@ -30,7 +30,7 @@ gem 'ancestry', '~> 3.2', '>= 3.2.1'
 gem 'activerecord-import', '~> 1.0', '>= 1.0.7'
 
 gem 'front_matter_parser', '~> 0.2.1'
-gem 'kramdown', '~> 2.3.0'
+gem 'kramdown', '~> 2.3.1'
 
 gem 'latex-decode', '~> 0.3.2'
 gem 'bibtex-ruby', '~> 5.1'
