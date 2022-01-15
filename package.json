@@ -7,7 +7,7 @@
     "@rails/webpacker": "5.2.1",
     "ideogram": "^1.29.0",
     "leapdna": "0.1.0",
-    "marked": "^2.0.0",
+    "marked": "^4.0.10",
     "mithril": "^2.0.4",
     "turbolinks": "^5.2.0",
     "d3": "^6.5.0"
